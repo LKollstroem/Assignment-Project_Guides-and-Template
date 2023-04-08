@@ -1,0 +1,84 @@
+### **Register page functionality overview**
+
+
+#******************** Settings ************************
+
+*** Settings ***
+
+Documentation User Registration Test scenario with verification, valid and invalid credentials.	
+
+Pre Condition	Browser open
+Post Condition	Enter Gitlab first page
+Tags Registration TS-2-Registration
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+LoginUrl = https://gitlab.com/users/sign_up
+FirstName= Leena
+LastName= Kollstrøm
+Email= leena.hyrkas.kollstrom@student.laurea.fi
+UserName= leenakollstrom
+Password= ***
+Invalid_Username= XYZZZ
+Invalid_Password= ******
+Empty= 
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# Positive Test
+
+Login With Valid Credential
+    Navigate To Login Page  LoginUrl
+	Input firstName firstName
+	Input lastName lastName
+	Input email email
+    Input Username  UserName
+    Input Password  Password
+    Submit Login Form
+    Verify Page Should Contain function for first project registry
+
+Login With Github
+    Navigate To Login Page  LoginUrl
+	Choose to login with Github
+    Verify Page Should Contain function for first project registry
+
+# Negative Test 
+
+Login With Invalid Credential
+    Navigate To Login Page  LoginUrl
+    Input firstName firstName
+	Input lastName lastName
+	Input email email
+    Input Username  UserName
+    Input Password  Empty
+    Submit Login Form
+    Verify That Error message should show This field is required
+
+Login With Invalid Credential
+    Navigate To Login Page  LoginUrl
+    Input firstName firstName
+	Input lastName lastName
+	Input email leena.hyrkas.kollstrom@student.laurea.fif
+    Input Username  UserName
+    Input Password  Password
+    Submit Login Form
+    Verify that the user can not login without confirming the code that is sent to faulty email for confirmation
+
+Login With Invalid Credential
+    Navigate To Login Page  LoginUrl
+    Input firstName firstName
+	Input lastName lastName
+	Input email leena.hyrkas.kollstrom@student.laurea.fif
+    Input Username  UserName
+    Input Password  Password
+    Submit Login Form
+    Verify that the user can not login without confirming the code that is sent to email for confirmation
+
+

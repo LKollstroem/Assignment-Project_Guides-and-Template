@@ -1,0 +1,61 @@
+### **Issue functionality overview**
+
+#******************** Settings ************************
+
+*** Settings ***
+Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Pre Condition	Project must be created by the user before 
+Post Condition	Issues are created and deleted
+Tags IssueFunction TS-3-IssueFunction
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+Title= title1
+Description= description1
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# Positive Test 
+
+Create issue
+	Navigate to issues
+	Click on Select project to create issue
+	Click on project
+	Click on New issue in projectName1
+	Insert title title
+	Insert description description
+	Mark if confidential
+	Assign to user
+	Create issue
+	Verify that message is showing that issue was created just now and assigned to user.
+
+Update name of issue
+	Navigate to issue
+	Click on edit button
+	Edit name of issue
+	Save chagnes
+	Verify that message is showing that title was changed by the user.
+
+Create second issue with privious updated name
+	Navigate to issues
+	create new issue
+	Use same name as priviously
+	Valide that message is showing that there are similar issues.
+	Save issue
+	Verify that message is showing that issue was created just now.
+
+Delete first issue
+	Navigate to issues
+	Click on first issue
+	Click on dot menu
+	Click on delete issue
+	Confirm deletion
+	Verify that the message says that the issue was successfully deleted.

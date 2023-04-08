@@ -1,0 +1,81 @@
+### **Project creation functionality overview**
+
+#******************** Settings ************************
+
+*** Settings ***
+
+Documentation	Project Test scenario. CRUD Operation: Create, Update, Delete
+
+
+Pre Condition	 Browser open, logged into https://gitlab.com/users/sign_up
+Post Condition	 Creation of project successful, Deletion of project successful, update of project successful
+Tags ProjectFunction TS-3-projectFunction
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+ProjectName= projectName1
+ProjectURL= https://gitlab.com/leenas1
+ProjectSlug= projectName1
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# Positive Test 
+
+Create project from first welcome page for project creation when logged in with Github
+	Insert group name: Leenas
+	Insert project name:  Fundamentals of SW testing
+	submit
+	Verify that message is showing Project 'Fundamentals of SW testing ' was successfully created.
+
+Create blank project
+	Navigate to new project button
+	Click on button
+	Click on create blank project
+	Insert  project name  projectName
+	Insert ProjectURL projectURL
+ 	Create project 
+	Verify that message is showing Project 'projectName1' was successfully created.
+
+Update name of project
+	Go on Settings
+	Go to general
+	Edit project name
+	Save changes
+	Verify that message is showing Project 'projectName' was successfully updated.
+
+Delete template project
+	Go on Settings
+	Go to general
+	Expand advanced
+	Delete this project
+	Confirm deletion
+	Verify that message is showing Project 'Leenas/projectName-deleted-45010127' will be deleted 2023-04-15.
+
+
+# Negative Test 
+
+Create blank project twice with same name
+	Navigate to new project button
+	Click on button
+	Click on create blank project
+	Insert  project name  projectName
+	Insert ProjectURL projectURL
+ 	Create project 
+	Verify that message is showing Project 'projectName' was successfully created.
+	Navigate to new project button
+	Click on button
+	Click on create blank project
+	Insert  project name  projectName
+	Insert ProjectURL projectURL
+ 	Create project 
+	Verify that Error message should show that this name is already taken
+
+
+
